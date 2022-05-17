@@ -1,0 +1,511 @@
+from tkinter import *
+
+from tkinter import messagebox
+
+import mysql.connector as m
+
+root = Tk()
+
+root.geometry("700x500")
+
+root.config(background="sky blue")
+
+h=m.connect(host="localhost",user="root", database="pro",password="stephen")
+
+cur=h.cursor()
+
+n=StringVar()
+
+m1=StringVar()
+
+N=("nitin","aenni")
+
+a=StringVar()
+
+b=StringVar()
+
+c=StringVar()
+
+d=StringVar()
+
+def book():
+
+    def delete():
+
+        def dele():
+
+            a = StringVar()
+
+            p=a.get()
+
+            h=m.connect(host="localhost",user="root", database="pro",password="stephen")
+
+            cur=h.cursor()
+
+            x="delete * from p2 where book==p".format(p)
+
+            cur.execute(x)
+
+            h.commit()
+
+            h.close()
+
+            messagebox.showinfo("login", "Data is saved successfully")
+
+        root = Tk()
+
+        root.geometry("700x500")
+
+        root.config(background="sky blue")
+
+        h=m.connect(host="localhost",user="root", database="pro",password="stephen")
+
+        cur=h.cursor()
+
+        
+
+        
+
+        l3=Label(root, text="Book",font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+        l3.place(x=70, y=170)
+
+        E2=Entry(root, text="",font=("arial", 16, "bold"), textvariable=b)
+
+        E2.place(x=300, y=170)
+
+        l3=Label(root, text="Publication", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+        l3.place(x =70, y = 240)
+
+        E3=Entry(root, text="",font=("arial", 16, "bold"), textvariable=c)
+
+        E3.place(x=300, y=240)
+
+        l4=Label(root, text="Class", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+        l4.place(x =70, y = 310)
+
+        E4=Entry(root, text="",font=("arial", 16, "bold"), textvariable=d)
+
+        E4.place(x=300, y=310)
+
+        b5=Button(root,text="Delete Record",font=("tempus sans ITC",18,"bold","underline"),bg="black", fg="white",command=dele)
+
+        b5.place(x=270,y=400)
+
+    
+
+    def create():
+
+        def save():
+
+            a = StringVar()
+
+            b = StringVar()
+
+            c= StringVar()
+
+            d = StringVar()
+
+            n=StringVar()
+
+            m1=StringVar()
+
+            p=a.get()
+
+            q=b.get()
+
+            r=c.get()
+
+            s=d.get()
+
+            h=m.connect(host="localhost",user="root", database="pro",password="stephen")
+
+            cur=h.cursor()
+
+            x="insert into p2 values('{}','{}','{}','{}')".format(p,q,r,s)
+
+            cur.execute(x)
+
+            h.commit()
+
+            h.close()
+
+            messagebox.showinfo("login", "Data is saved successfully")
+
+            
+
+        
+
+        
+
+        root = Tk()
+
+        root.geometry("700x500")
+
+        root.config(background="sky blue")
+
+        h=m.connect(host="localhost",user="root", database="pro",password="stephen")
+
+        cur=h.cursor()
+
+        
+
+        l2=Label(root, text="S.no", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+        l2.place(x =70, y = 100)
+
+        E1 = Entry(root, text="" , font=("arial", 16, "bold"),  fg="red",textvariable=a)
+
+        E1.place(x = 300, y =100)
+
+        l3=Label(root, text="Book",font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+        l3.place(x=70, y=170)
+
+        E2=Entry(root, text="",font=("arial", 16, "bold"), textvariable=b)
+
+        E2.place(x=300, y=170)
+
+        l3=Label(root, text="Publication", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+        l3.place(x =70, y = 240)
+
+        E3=Entry(root, text="",font=("arial", 16, "bold"), textvariable=c)
+
+        E3.place(x=300, y=240)
+
+        l4=Label(root, text="Class", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+        l4.place(x =70, y = 310)
+
+        E4=Entry(root, text="",font=("arial", 16, "bold"), textvariable=d)
+
+        E4.place(x=300, y=310)
+
+        b5=Button(root,text="Save",font=("tempus sans ITC",18,"bold","underline"),bg="black", fg="white",command=save)
+
+        b5.place(x=300,y=400)
+
+        
+
+        
+
+    def table():
+
+            root = Tk()
+
+            root.geometry("700x500")
+
+            root.config(background="sky blue")
+
+            h=m.connect(host="localhost",user="root", database="pro",password="stephen")
+
+            cur=h.cursor()
+
+            p=m1.get()
+
+            q=n.get()
+
+            x="select * from p2"
+
+            cur.execute(x)
+
+            u=cur.fetchall()
+
+            h.commit()
+
+            h.close()
+
+            o=Text(root, font=("tempus sans ITC",10,"bold"),bd=5,height=25,width=55)
+
+            o.place(x=70,y=30)
+
+            o.insert(END,"    S.no.  "+"    Book Name "+"             Publication "+"                                    Class"  +   "\n"+"\n")
+
+            for i in u:
+
+                for j in i:
+
+                    o.insert(END,"  "+"     ")
+
+                    o.insert(END,str(j)+" ")
+
+                o.insert(END,"\n")
+
+                o.insert(END,"\n")
+
+            
+
+            
+
+    global root
+
+    root.destroy()
+
+    root=Tk()
+
+    root.geometry("700x500")
+
+    root.config(background="sky blue")
+
+    n=StringVar()
+
+    m1=StringVar()
+
+    g1=Button(root,text="Check Books",font=("tempus sans ITC",20,"bold","underline"),command=table)
+
+    g1.place(x=270,y=100)
+
+    g2=Button(root,text="Create Books",font=("tempus sans ITC",20,"bold","underline"),bg="black", fg="white",command=create)
+
+    g2.place(x=270,y=170)
+
+    g3=Button(root,text="Delete Books",font=("tempus sans ITC",20,"bold","underline"),bg="black", fg="white",command=delete)
+
+    g3.place(x=270,y=240)
+
+    
+
+    
+
+    
+
+    
+
+def login():
+
+    global root
+
+    root.destroy()
+
+    root=Tk()
+
+    root.geometry("700x500")
+
+    root.config(background="sky blue")
+
+    n=StringVar()
+
+    m1=StringVar()
+
+    
+
+    def show():
+
+        import mysql.connector as m
+
+        root = Tk()
+
+        root.geometry("700x500")
+
+        root.config(background="sky blue")
+
+        h=m.connect(host="localhost",user="root", database="pro",password="stephen")
+
+        cur=h.cursor()
+
+        p=m1.get()
+
+        q=n.get()
+
+        
+
+            
+
+        if(p in N and q == '123'):
+
+            messagebox.showinfo("login", "you are welcome")
+
+        else:
+
+            messagebox.showerror("login", "Invalid name and password")
+
+    def abc():
+
+        n.set(' ')
+
+        m1.set(' ')
+
+    def exi():
+
+        root.destroy()
+
+        
+
+            
+
+    l1=Label(root, text="Welcome To Log-In Page", font=("tempus sans ITC", 22, "italic","underline"), bg="black", fg="white")
+
+    l1.pack()
+
+    l2=Label(root, text="User Name", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+    l2.place(x =70, y = 100)
+
+    E1 = Entry(root, text="" , font=("arial", 16, "bold"),  fg="red",textvariable=m1)
+
+    E1.place(x = 300, y =100)
+
+    l3=Label(root, text="Password",font=("arial",16,"underline"))
+
+    l3.place(x=70, y=200)
+
+    E2=Entry(root, text="",font=("arial", 16, "bold"), textvariable=n)
+
+    E2.place(x=300, y=200)
+
+    B1=Button(root,text="Log In",font=("arial",14,"bold","underline"),command=book)
+
+    B1.place(x=200,y=350)
+
+    B2=Button(root,text="Reset",font=("arial",14,"bold","underline") , command=abc)
+
+    B2.place(x=350,y=350)
+
+    b3=Button(root,text="Exit",font=("arial",14,"bold","underline"),command=exi)
+
+    b3.place(x=500,y=350)
+
+    
+
+def register():
+
+    global root
+
+    root.destroy()
+
+    root=Tk()
+
+    root.geometry("700x500")
+
+    root.config(background="sky blue")
+
+    h=m.connect(host="localhost",user="root", database="pro",password="stephen")
+
+    cur=h.cursor()
+
+    a = StringVar()
+
+    b = StringVar()
+
+    c= StringVar()
+
+    d = StringVar()
+
+    n=StringVar()
+
+    m1=StringVar()
+
+    def exi():
+
+        root.destroy()
+
+    def abc():
+
+        a.set(" ")
+
+        b.set(" ")
+
+        c.set(" ")
+
+        d.set(" ")
+
+        
+
+    def save():
+
+        p=a.get()
+
+        q=b.get()
+
+        r=c.get()
+
+        s=d.get()
+
+        x="insert into p1 values('{}','{}','{}','{}')".format(p,q,r,s)
+
+        cur.execute(x)
+
+        h.commit()
+
+        messagebox.showinfo("login", "Data is saved successfully")
+
+    
+
+ 
+
+            
+
+       
+
+            
+
+        
+
+    l1=Label(root, text="Welcome To Registration Page", font=("tempus sans ITC", 22, "italic","underline"), bg="black", fg="white")
+
+    l1.pack()
+
+    l2=Label(root, text="User Name", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+    l2.place(x =70, y = 100)
+
+    E1 = Entry(root, text="" , font=("arial", 16, "bold"),  fg="red",textvariable=a)
+
+    E1.place(x = 300, y =100)
+
+    l3=Label(root, text="Password",font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+    l3.place(x=70, y=170)
+
+    E2=Entry(root, text="",font=("arial", 16, "bold"), textvariable=b)
+
+    E2.place(x=300, y=170)
+
+    l3=Label(root, text="Gender", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+    l3.place(x =70, y = 240)
+
+    E3=Entry(root, text="",font=("arial", 16, "bold"), textvariable=c)
+
+    E3.place(x=300, y=240)
+
+    l4=Label(root, text="Address", font=("arial", 16, "bold","underline"), bg="yellow", fg="red")
+
+    l4.place(x =70, y = 310)
+
+    E4=Entry(root, text="",font=("arial", 16, "bold"), textvariable=d)
+
+    E4.place(x=300, y=310)
+
+    b3=Button(root,text="Register",font=("tempus sans ITC",18,"bold","underline"),bg="black", fg="white",command=save)
+
+    b3.place(x=300,y=400)
+
+    B2=Button(root,text="Reset",font=("tempus sans ITC",18,"bold","underline"),bg="black", fg="white", command=abc)
+
+    B2.place(x=100,y=400)
+
+    b5=Button(root,text="Exit",font=("tempus sans ITC",18,"bold","underline"),bg="black", fg="white",command=exi)
+
+    b5.place(x=500,y=400)
+
+    
+
+    
+
+L1=Label(root, text="Welcome To Library", font=("tempus sans ITC", 22, "italic","underline"), bg="black", fg="white")
+
+L1.pack()
+
+b1=Button(root,text="Log In",font=("tempus sans ITC",18,"bold","underline"),bg="black", fg="white",command=login)
+
+b1.place(x=200,y=250)
+
+b3=Button(root,text="Register",font=("tempus sans ITC",18,"bold","underline"),bg="black", fg="white",command=register)
+
+b3.place(x=400,y=250)
+
+root.mainloop()
